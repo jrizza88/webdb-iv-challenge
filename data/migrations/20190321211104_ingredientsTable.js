@@ -3,16 +3,8 @@ exports.up = function(knex, Promise) {
   return knex.schema.createTable('ingredients', tbl =>{
         tbl.increments();
 
-        tbl.string('ingredient', 128).notNullable()
+        tbl.string('ingredient', 128).notNullable().unique('ingredient_name');
 
-        tbl
-        .integer('recipes_id')
-        .unsigned()
-        .references('id')
-        .inTable('recipes')
-        .onDelete('CASCADE')
-        .onUpdate('CASCADE');
-        
   });
 };
 
